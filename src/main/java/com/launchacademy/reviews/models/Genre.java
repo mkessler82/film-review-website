@@ -1,15 +1,16 @@
 package com.launchacademy.reviews.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
+import java.sql.Array;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "genres")
@@ -23,9 +24,16 @@ public class Genre {
   @Column(name = "id", nullable = false, unique = true)
   private Integer id;
 
-  @Column(name = "name")
+  @NotBlank
+  @Column(name = "name", nullable = false)
   private String name;
 
-  @Column(name = "img_url")
+  @NotBlank
+  @Column(name = "img_url", nullable = false)
   private String imgUrl;
+
+  @OneToMany(fetch = FetchType.EAGER, mappedBy = "genre")
+  @JsonIgnoreProperties(value = "genre")
+  private List<Film> films = new ArrayList<>();
+
 }

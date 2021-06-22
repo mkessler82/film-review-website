@@ -4,6 +4,7 @@ import { hot } from "react-hot-loader/root";
 import "foundation-sites";
 import $ from "jquery";
 import GenresIndex from "./GenresIndex";
+import GenresShow from "./GenresShow";
 
 const App = (props) => {
   useEffect(() => {
@@ -17,6 +18,7 @@ const App = (props) => {
           <Redirect to="/genres" />
         </Route>
         <Route exact path="/genres" component={GenresIndex} />
+        <Route exact path="/genres/:id" component={GenresShow} />
       </Switch>
   </BrowserRouter>
   )
