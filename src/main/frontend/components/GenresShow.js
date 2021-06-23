@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import FilmTile from "./FilmTile"
+import FilmTile from "./FilmTile";
 
-const GenresShow = props => {
-  const [films, setFilms] = useState(
-    { films: [] }
-  )
+const GenreShow = props => {
+  const [genre, setGenre] = useState({ films: [] })
 
   const fetchGenre = async () => {
     try {
@@ -17,23 +15,31 @@ const GenresShow = props => {
         throw (error)
       }
       const genreData = await response.json()
-
-      setFilms(genreData.genre.films)
+      setGenre(genreData.genre)
     } catch (err) {
       console.error(`Error in fetch: ${err.message}`)
     }
   }
 
   useEffect(() => {
-
     fetchGenre()
   }, [])
 
+  const filmTiles = genre.films.map(film => {
+    return (
+      <FilmTile
+        key={film.id}
+        film={film}
+      />
+    )
+  })
+
   return (
     <div>
-      <h1>Genre Show Page</h1>
+      <h1>{genre.name}</h1>
+      {filmTiles}
     </div>
   )
 }
 
-export default GenresShow
+export default GenreShow

@@ -21,6 +21,6 @@ public class ReviewService {
   }
 
   public Review save(Review review){
-    return (Review) reviewRepository.save(review);
+    return reviewRepository.save(review);
   }
 }

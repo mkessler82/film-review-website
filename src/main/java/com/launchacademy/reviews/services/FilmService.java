@@ -2,6 +2,7 @@ package com.launchacademy.reviews.services;
 
 import com.launchacademy.reviews.models.Film;
 import com.launchacademy.reviews.repositories.FilmRepository;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +22,10 @@ public class FilmService {
 
   public Page<Film> findByGenreId(Pageable pageable, Integer id) {
     return this.filmRepository.findByGenreId(pageable, id);
+  }
+
+  public Optional<Film> findById(Integer id){
+    return filmRepository.findById(id);
   }
 
   public List<Film> findAll() {

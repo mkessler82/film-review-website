@@ -1,12 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+
+import GenreTile from './GenreTile'
 
 const GenresIndex = props => {
+  const [genres, setGenres] = useState([])
 
-return(
-  <div>
-    <h1>GenresIndex</h1>
-  </div>
-)
+  const fetchGenres = async () => {
+    try {
+      const response = await fetch("/api/v1/genres")
+      if (!response.ok) {
+        const errorMessage = `${response.status} (${response.statusText})`
+        const error = new Error(errorMessage)
+        throw (error)
+      }
+      const GenresData = await response.json()
+      setGenres(GenresData.genres.content)
+    } catch (err) {
+      console.error(`Error in fetch: ${err.message}`)
+    }
+  }
+
+  useEffect(() => {
+    fetchGenres()
+  }, [])
+
+  const genreTiles = genres.map(genre => {
+    return (
+      <GenreTile
+        key={genre.id}
+        genre={genre}
+      />
+    )
+  })
+
+  return (
+    <div>
+      {genreTiles}
+    </div>
+  )
 }
 
 export default GenresIndex

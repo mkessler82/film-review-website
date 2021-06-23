@@ -5,6 +5,7 @@ import "foundation-sites";
 import $ from "jquery";
 import GenresIndex from "./GenresIndex";
 import GenreShow from "./GenreShow";
+import FilmShow from "./FilmShow";
 
 const App = (props) => {
   useEffect(() => {
@@ -19,6 +20,7 @@ const App = (props) => {
         </Route>
         <Route exact path="/genres" component={GenresIndex} />
         <Route exact path="/genres/:id" component={GenreShow} />
+        <Route exact path="/films/:id" component={FilmShow} />
       </Switch>
     </BrowserRouter>
   )

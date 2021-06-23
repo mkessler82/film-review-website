@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,6 +28,7 @@ public class Review {
   @Column(name = "id", nullable = false, unique = true)
   private Integer id;
 
+  @NotNull(message = "is empty")
   @Column(name = "star_rating", nullable = false)
   private Integer starRating;
 
