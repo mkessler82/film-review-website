@@ -34,9 +34,12 @@ const GenresIndex = props => {
   })
 
   return (
-    <div>
-      {genreTiles}
+    <div className="grid-container fluid">
+      <div className="grid-x grid-margin-x">
+        {genreTiles}
+      </div>
     </div>
+
   )
 }
 

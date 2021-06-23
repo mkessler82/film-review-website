@@ -4,6 +4,8 @@ import { hot } from "react-hot-loader/root";
 import "foundation-sites";
 import $ from "jquery";
 import GenresIndex from "./GenresIndex";
+import FilmShow from "./FilmShow";
+import "../assets/scss/main.scss"
 
 const App = (props) => {
   useEffect(() => {
@@ -17,6 +19,7 @@ const App = (props) => {
           <Redirect to="/genres" />
         </Route>
         <Route exact path="/genres" component={GenresIndex} />
+        <Route exact path="/films/:id" component={FilmShow} />
       </Switch>
     </BrowserRouter>
   )
