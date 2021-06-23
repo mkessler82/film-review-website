@@ -5,10 +5,10 @@ const FilmTile = (props) => {
 
   return (
     <div>
-      <a href={`/films/${id}`}>
+      {/* <a href={`/films/${id}`}> Replace this with a React Link in next story*/}
         <img src={imgUrl} />
         <h3>{title} - {year}</h3>
-      </a>
+      {/* </a> */}
     </div>
   )
 }
