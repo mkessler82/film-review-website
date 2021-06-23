@@ -3,7 +3,7 @@ import React from 'react'
 const GenreTile = (props) => {
   const { id, name, imgUrl } = props.genre
 
-  return (
+    return (
     <div>
       <a href={`/genres/${id}`}>
         <img src={imgUrl} />
