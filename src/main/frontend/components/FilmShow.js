@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-
 const FilmShow = props => {
-  const [film, setFilm] = useState([])
+  const [film, setFilm] = useState({})
 
   const id = props.match.params.id
 
