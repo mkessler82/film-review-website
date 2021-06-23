@@ -1,14 +1,15 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 const FilmTile = (props) => {
   const { id, title, imgUrl, year } = props.film
 
   return (
     <div>
-      {/* <a href={`/films/${id}`}> Replace this with a React Link in next story*/}
+      <Link to={`/films/${id}`}>
         <img src={imgUrl} />
         <h3>{title} - {year}</h3>
-      {/* </a> */}
+      </Link>
     </div>
   )
 }
