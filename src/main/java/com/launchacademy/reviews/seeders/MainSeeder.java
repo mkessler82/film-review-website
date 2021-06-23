@@ -6,10 +6,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MainSeeder implements CommandLineRunner {
+  @Autowired private FilmSeeder filmSeeder;
   @Autowired private GenreSeeder genreSeeder;
 
   @Override
   public void run(String... args) throws Exception {
     genreSeeder.seed();
+    filmSeeder.seed();
   }
 }
