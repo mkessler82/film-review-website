@@ -1,31 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 const FilmTile = (props) => {
+  const { id, title, imgUrl, year } = props.film
 
-// const [film, setFilm] = useState()
-//   const fetchFilm = async () => {
-//     try {
-//       const response = await fetch(`/api/v1/films/${id}`)
-//       if(!response.ok) {
-//         const errorMessage = `${response.status} (${response.statusText})`
-//         const error = new Error(errorMessage)
-//         throw(error)
-//       }
-//       const petData = await response.json()
-//       setPet(petData.pet)
-//     } catch(err) {
-//       console.error(`Error in fetch: ${err.message}`)
-//       setPet(null)
-//     }
-//   }
-
-   useEffect(() => {
-     fetchPet()
-   }, [])
-
-    return (
+  return (
     <div>
-      <p>  Hello </p>
+      {/* <a href={`/films/${id}`}> Replace this with a React Link in next story*/}
+        <img src={imgUrl} />
+        <h3>{title} - {year}</h3>
+      {/* </a> */}
     </div>
   )
 }

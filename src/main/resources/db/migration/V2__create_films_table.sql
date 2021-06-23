@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS films;
+
 CREATE TABLE films (
   id SERIAL PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
@@ -7,3 +8,4 @@ CREATE TABLE films (
   year INTEGER NOT NULL,
   genre_id INTEGER NOT NULL REFERENCES genres(id)
 );
+
