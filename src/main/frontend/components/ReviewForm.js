@@ -9,7 +9,6 @@ const ReviewForm = props => {
   const [errors, setErrors] = useState({})
 
   const handleInputChange = event => {
-    console.log(event.currentTarget.value)
     setFormPayload({
       ...formPayload,
       [event.currentTarget.name]: event.currentTarget.value
@@ -36,7 +35,8 @@ const ReviewForm = props => {
     }
   }
 
-  const clearForm = () => {
+  const clearForm = (event) => {
+    event.preventDefault()
     setFormPayload({
       description: "",
       starRating: ""
@@ -51,7 +51,7 @@ const ReviewForm = props => {
         <label htmlFor="starRating">Rating:</label>
         <select name="starRating" id="starRating" onChange={handleInputChange} value={formPayload.starRating}>
           <option value=""></option>
-          <option value={1}>1</option>
+          <option value={1}>*</option>
           <option value={2}>**</option>
           <option value={3}>***</option>
           <option value={4}>****</option>
