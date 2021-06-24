@@ -1,6 +1,5 @@
 package com.launchacademy.reviews.models;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -27,7 +26,7 @@ public class Film {
   @Column(name = "title", nullable = false)
   private String title;
 
-  @URL
+//  @URL
   @Column(name = "img_url", nullable = false)
   private String imgUrl;
 
@@ -44,4 +43,5 @@ public class Film {
   @JoinColumn(name = "genre_id", nullable = false)
   @JsonIgnoreProperties("films")
   private Genre genre;
+
 }
