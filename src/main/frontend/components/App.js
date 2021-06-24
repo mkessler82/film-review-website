@@ -7,6 +7,7 @@ import GenresIndex from "./GenresIndex";
 import GenreShow from "./GenreShow";
 import FilmShow from "./FilmShow";
 import FilmForm from "./FilmForm";
+import "../assets/scss/main.scss"
 
 const App = (props) => {
   useEffect(() => {
