@@ -36,8 +36,4 @@ public class FilmService {
   public void save(Film film) {
     filmRepository.save(film);
   }
-
-  public Optional<Film> findById(Integer id) {
-    return filmRepository.findById(id);
-  }
 }
