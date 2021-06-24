@@ -3,7 +3,6 @@ package com.launchacademy.reviews.controllers;
 import com.launchacademy.reviews.models.Film;
 import com.launchacademy.reviews.models.Review;
 import com.launchacademy.reviews.services.FilmService;
-import com.launchacademy.reviews.services.GenreService;
 import com.launchacademy.reviews.services.ReviewService;
 import java.util.HashMap;
 import java.util.List;

@@ -7,10 +7,15 @@ const ReviewTile = (props) => {
     stars += "*"
   }
 
+  let userReview
+  if (description) {
+    userReview = "User Review: "
+  }
+
   return (
     <div>
       <h2>Rating: {stars}</h2>
-      <p>User review:</p>
+      <p>{userReview}</p>
       <p>{description}</p>
     </div>
   )

@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import ErrorList from './ErrorList';
 
 const ReviewForm = props => {
   const [formPayload, setFormPayload] = useState({
     description: "",
     starRating: ""
   })
+  const [errors, setErrors] = useState({})
 
   const handleInputChange = event => {
     console.log(event.currentTarget.value)
@@ -14,10 +16,24 @@ const ReviewForm = props => {
     })
   }
 
+  const validForSubmission = () => {
+    const errors = {}
+    const requiredFields = ["starRating"]
+    requiredFields.forEach(field => {
+      if (formPayload[field].trim() === "") {
+        errors[field] = "is empty"
+      }
+    })
+    setErrors(errors)
+    return _.isEmpty(errors)
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault()
-    props.postNewReview(formPayload)
-    clearForm()
+    if (validForSubmission()) {
+      props.postNewReview(formPayload)
+      clearForm()
+    }
   }
 
   const clearForm = () => {
@@ -25,10 +41,12 @@ const ReviewForm = props => {
       description: "",
       starRating: ""
     })
+    setErrors({})
   }
 
   return (
     <form onSubmit={handleSubmit}>
+      <ErrorList errors={{ ...errors, ...props.errors }} />
       <div>
         <label htmlFor="starRating">Rating:</label>
         <select name="starRating" id="starRating" onChange={handleInputChange} value={formPayload.starRating}>
@@ -50,7 +68,10 @@ const ReviewForm = props => {
           onChange={handleInputChange}
         />
       </div>
-      <input className="button" type="submit" value="Submit" />
+      <div>
+        <button className="button" type="button" onClick={clearForm}>Clear</button>
+        <input className="button" type="submit" value="Submit" />
+      </div>
     </form>
   )
 }

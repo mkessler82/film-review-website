@@ -4,9 +4,9 @@ const GenreTile = (props) => {
   const { id, name, imgUrl } = props.genre
 
   return (
-    <div>
+    <div className="cell small-12 medium-6 large-4">
       <a href={`/genres/${id}`}>
-        <img src={imgUrl} />
+        <img className="thumbnail" src={imgUrl} />
         <h1>{name}</h1>
       </a>
     </div>

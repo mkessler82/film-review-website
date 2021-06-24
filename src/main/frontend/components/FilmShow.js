@@ -23,7 +23,6 @@ const FilmShow = props => {
         throw (error)
       }
       const filmData = await response.json()
-      debugger
       setFilm(filmData.film)
     } catch (err) {
       console.error(`Error in fetch: ${err.message}`)
