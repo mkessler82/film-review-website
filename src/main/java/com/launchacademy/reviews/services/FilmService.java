@@ -1,6 +1,7 @@
 package com.launchacademy.reviews.services;
 
 import com.launchacademy.reviews.models.Film;
+import com.launchacademy.reviews.models.Genre;
 import com.launchacademy.reviews.repositories.FilmRepository;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,9 @@ public class FilmService {
 
   public void save(Film film) {
     filmRepository.save(film);
+  }
+
+  public Optional<Film> findById(Integer id) {
+    return filmRepository.findById(id);
   }
 }
