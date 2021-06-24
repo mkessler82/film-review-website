@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import FilmTile from "./FilmTile";
 
 const GenreShow = props => {
-  const [genre, setGenre] = useState({films: []})
+  const [genre, setGenre] = useState({ films: [] })
 
   const fetchGenre = async () => {
     try {

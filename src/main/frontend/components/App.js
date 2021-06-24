@@ -6,6 +6,7 @@ import $ from "jquery";
 import GenresIndex from "./GenresIndex";
 import GenreShow from "./GenreShow";
 import FilmShow from "./FilmShow";
+import "../assets/scss/main.scss"
 
 const App = (props) => {
   useEffect(() => {

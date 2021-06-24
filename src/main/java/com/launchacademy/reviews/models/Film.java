@@ -1,11 +1,9 @@
 package com.launchacademy.reviews.models;
-
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -44,4 +42,8 @@ public class Film {
   @JoinColumn(name = "genre_id", nullable = false)
   @JsonIgnoreProperties("films")
   private Genre genre;
+
+  @OneToMany(mappedBy = "film")
+  @JsonIgnoreProperties("film")
+  private List<Review> reviews;
 }
