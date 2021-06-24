@@ -73,7 +73,7 @@ const FilmShow = props => {
   }
 
   let submitButton
-  if(!successfulReviewPosted){  
+  if (!successfulReviewPosted) {
     submitButton = <button type="button" className="button" onClick={handleReviewButtonClick}>Add Review!</button>
   }
 
