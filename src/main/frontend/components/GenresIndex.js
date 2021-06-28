@@ -13,8 +13,8 @@ const GenresIndex = props => {
         const error = new Error(errorMessage)
         throw (error)
       }
-      const GenresData = await response.json()
-      setGenres(GenresData.genres.content)
+      const genresData = await response.json()
+      setGenres(genresData.genres.content)
     } catch (err) {
       console.error(`Error in fetch: ${err.message}`)
     }

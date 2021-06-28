@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from "react-router-dom"
 import FilmTile from "./FilmTile";
 
 const GenreShow = props => {
+  let location = useLocation();
   const [genre, setGenre] = useState({ films: [] })
 
   const fetchGenre = async () => {
@@ -23,7 +25,7 @@ const GenreShow = props => {
 
   useEffect(() => {
     fetchGenre()
-  }, [])
+  }, [location.pathname])
 
   const filmTiles = genre.films.map(film => {
     return (
