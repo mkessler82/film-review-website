@@ -42,6 +42,11 @@ public class FilmsRestController {
     return filmMap;
   }
 
+  @PostMapping("/{id}/delete")
+  public void deleteFilm (@PathVariable Integer id) {
+    filmService.deleteFilm(id);
+  }
+
   @PostMapping("/{id}/add-review")
   public ResponseEntity addNewReview (@PathVariable Integer id, @Valid @RequestBody Review review, BindingResult bindingResult){
     if(bindingResult.hasErrors()) {
