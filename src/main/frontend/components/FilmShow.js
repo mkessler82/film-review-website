@@ -30,7 +30,7 @@ const FilmShow = props => {
 
   useEffect(() => {
     fetchFilm()
-  }, [])
+  }, [newReview])
 
   const addReview = async (reviewPayload) => {
     try {
@@ -91,11 +91,6 @@ const FilmShow = props => {
     )
   })
 
-  let newReviewTile
-  if (newReview) {
-    newReviewTile = <ReviewTile review={newReview} />
-  }
-
   return (
     <div>
       <h1>{film.title} - {film.year}</h1>
@@ -104,7 +99,6 @@ const FilmShow = props => {
       {submitButton}
       {successMessageTag}
       {newReviewForm}
-      {newReviewTile}
       {reviewsList}
     </div>
   )

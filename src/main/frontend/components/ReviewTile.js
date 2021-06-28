@@ -7,7 +7,7 @@ const ReviewTile = (props) => {
 
   const [upvoted, setUpvoted] = useState(false)
   const [downvoted, setDownvoted] = useState(false)
-  const [stateCount, setCount] = useState(voteCount)
+  const [stateCount, setCount] = useState(voteCount || 0)
 
   let stars = ""
   for (let i = 0; i < starRating; i++) {
@@ -46,7 +46,6 @@ const ReviewTile = (props) => {
       setUpvoted(false)
       localCount -= 1
     }
-    console.log(localCount)
     setCount(localCount)
     updateVoteCount(id, localCount)
   }

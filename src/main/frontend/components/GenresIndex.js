@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 import GenreTile from './GenreTile'
 
 const GenresIndex = props => {
