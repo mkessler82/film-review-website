@@ -6,6 +6,7 @@ import $ from "jquery";
 import GenresIndex from "./GenresIndex";
 import GenreShow from "./GenreShow";
 import FilmShow from "./FilmShow";
+import FilmForm from "./FilmForm";
 import "../assets/scss/main.scss"
 
 const App = (props) => {
@@ -21,6 +22,7 @@ const App = (props) => {
         </Route>
         <Route exact path="/genres" component={GenresIndex} />
         <Route exact path="/genres/:id" component={GenreShow} />
+        <Route exact path="/films/new" component={FilmForm} />
         <Route exact path="/films/:id" component={FilmShow} />
       </Switch>
     </BrowserRouter>
