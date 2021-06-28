@@ -25,7 +25,7 @@ const NavBar = props => {
   }
 
   useEffect(() => {
-    fetchGenres()
+   fetchGenres()
   }, [])
 
   const genreLinks = genres.map(genre => {
@@ -44,13 +44,13 @@ const NavBar = props => {
 
   return (
     <div>
-     <div className="top-bar">
-      <div className="top-bar-left">
-        <ul className="menu">
-          {genreLinks}
-        </ul>
+      <div className="top-bar">
+        <div className="top-bar-left">
+          <ul className="menu">
+            {genreLinks}
+          </ul>
+        </div>
       </div>
-     </div>
       <Switch>
         <Route exact path="/">
           <Redirect to="/genres" />
@@ -60,7 +60,6 @@ const NavBar = props => {
         <Route exact path="/films/new" component={FilmForm} />
         <Route exact path="/films/:id" component={FilmShow} />
       </Switch>
-
     </div>
   )
 }
