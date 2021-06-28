@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import ReviewForm from './ReviewForm';
 import ReviewTile from './ReviewTile';
 
-
 const FilmShow = props => {
   const [film, setFilm] = useState({
     reviews: []
@@ -42,7 +41,6 @@ const FilmShow = props => {
         }),
         body: JSON.stringify(reviewPayload)
       })
-      debugger
       if (!response.ok) {
         if (response.status === 422) {
           const body = await response.json()
@@ -74,10 +72,14 @@ const FilmShow = props => {
     />
   }
 
+  let submitButton
+  if (!successfulReviewPosted) {
+    submitButton = <button type="button" className="button" onClick={handleReviewButtonClick}>Add Review!</button>
+  }
+
   let successMessageTag;
   if (successfulReviewPosted) {
     successMessageTag = <p><strong>Thank you for your review.</strong></p>
-
   }
 
   let reviewsList = film.reviews.map(review => {
@@ -99,7 +101,7 @@ const FilmShow = props => {
       <h1>{film.title} - {film.year}</h1>
       <img src={film.imgUrl} />
       <p>{film.description}</p>
-      <button type="button" className="button" onClick={handleReviewButtonClick}>Add Review!</button>
+      {submitButton}
       {successMessageTag}
       {newReviewForm}
       {newReviewTile}

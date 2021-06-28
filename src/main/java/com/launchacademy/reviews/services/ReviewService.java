@@ -3,6 +3,7 @@ package com.launchacademy.reviews.services;
 import com.launchacademy.reviews.models.Review;
 import com.launchacademy.reviews.repositories.ReviewRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -22,5 +23,9 @@ public class ReviewService {
 
   public Review save(Review review){
     return reviewRepository.save(review);
+  }
+
+  public Optional<Review> findById (Integer id){
+    return reviewRepository.findById(id);
   }
 }

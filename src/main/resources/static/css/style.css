@@ -1,5 +1,13 @@
+.grey{
+  color: grey;
+}
+
 .green{
-  color: red;
+  color: green;
+}
+
+.red{
+color: red;
 }
 
 body{
