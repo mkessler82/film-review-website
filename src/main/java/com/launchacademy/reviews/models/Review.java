@@ -38,4 +38,7 @@ public class Review {
   @JoinColumn(name = "film_id", nullable = false)
   @JsonIgnoreProperties("reviews")
   private Film film;
+
+  @Column(name = "vote_count")
+  private Integer voteCount = 0;
 }
