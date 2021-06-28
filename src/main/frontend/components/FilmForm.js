@@ -58,7 +58,6 @@ const FilmForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log(formPayload);
     if(validForSubmission()) {
       addFilm()
     }
@@ -74,8 +73,6 @@ const FilmForm = (props) => {
   if (shouldRedirect) {
     return <Redirect push to={`/films/${filmId}`} />
   }
-
-  console.log(formPayload);
 
   return (
     <form onSubmit={handleSubmit}>
