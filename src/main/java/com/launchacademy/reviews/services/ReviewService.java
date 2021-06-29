@@ -25,13 +25,6 @@ public class ReviewService {
     return reviewRepository.save(review);
   }
 
-  public void deleteAllByFilmId(Integer id) {
-    List<Review> listOfReviews = reviewRepository.findAllByFilmId(id);
-    for (Integer i = 0; i < listOfReviews.size(); i++) {
-      reviewRepository.delete(listOfReviews.get(i));
-    }
-  }
-
   public Optional<Review> findById (Integer id){
     return reviewRepository.findById(id);
   }
