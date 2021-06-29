@@ -1,6 +1,7 @@
 package com.launchacademy.reviews.controllers;
 
 import com.launchacademy.reviews.models.Film;
+import com.launchacademy.reviews.models.Genre;
 import com.launchacademy.reviews.models.Review;
 import com.launchacademy.reviews.services.FilmService;
 import com.launchacademy.reviews.services.ReviewService;
@@ -15,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,8 +44,9 @@ public class FilmsRestController {
     return filmMap;
   }
 
-  @PostMapping("/{id}/delete")
+  @DeleteMapping("/{id}/delete")
   public void deleteFilm (@PathVariable Integer id) {
+    reviewService.deleteAllByFilmId(id);
     filmService.deleteFilm(id);
   }
 

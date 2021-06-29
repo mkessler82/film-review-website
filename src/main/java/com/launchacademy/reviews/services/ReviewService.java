@@ -23,4 +23,11 @@ public class ReviewService {
   public Review save(Review review){
     return reviewRepository.save(review);
   }
+
+  public void deleteAllByFilmId(Integer id) {
+    List<Review> listOfReviews = reviewRepository.findAllByFilmId(id);
+    for (Integer i = 0; i < listOfReviews.size(); i++) {
+      reviewRepository.delete(listOfReviews.get(i));
+    }
+  }
 }
