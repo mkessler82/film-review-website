@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -28,5 +30,10 @@ public class ReviewRestController {
     Review review = reviewService.findById(id).get();
     review.setVoteCount(Integer.parseInt(reviewObject.get("finalCount")));
     return new ResponseEntity(reviewService.save(review), HttpStatus.OK);
+  }
+
+  @DeleteMapping("/{id}")
+  public void deleteReview (@PathVariable Integer id) {
+    reviewService.deleteReview(id);
   }
 }
