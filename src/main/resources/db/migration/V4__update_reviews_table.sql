@@ -1,3 +1,3 @@
 ALTER TABLE reviews
-ADD vote_count INTEGER NOT NULL;
+ADD vote_count INTEGER NOT NULL DEFAULT 0;
 
