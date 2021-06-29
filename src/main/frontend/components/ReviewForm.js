@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ErrorList from './ErrorList';
+import AddStarRating from './AddStarRating';
 
 const ReviewForm = props => {
   const [formPayload, setFormPayload] = useState({
@@ -43,19 +44,16 @@ const ReviewForm = props => {
     setErrors({})
   }
 
+  const setStarRatingValue = (starRatingValue) => {
+    formPayload.starRating = starRatingValue
+    console.log(formPayload.starRating)
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <ErrorList errors={{ ...errors, ...props.errors }} />
       <div>
-        <label htmlFor="starRating">Rating:</label>
-        <select name="starRating" id="starRating" onChange={handleInputChange} value={formPayload.starRating}>
-          <option value=""></option>
-          <option value={1}>*</option>
-          <option value={2}>**</option>
-          <option value={3}>***</option>
-          <option value={4}>****</option>
-          <option value={5}>*****</option>
-        </select>
+        <AddStarRating setStarRatingValue = {setStarRatingValue}/>
       </div>
       <div>
         <label htmlFor="description">Description: </label>
