@@ -43,7 +43,7 @@ public class Film {
   @JsonIgnoreProperties("films")
   private Genre genre;
 
-  @OneToMany(mappedBy = "film")
+  @OneToMany(mappedBy = "film", orphanRemoval=true)
   @JsonIgnoreProperties("film")
   private List<Review> reviews;
 }

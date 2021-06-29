@@ -105,7 +105,7 @@ const FilmShow = props => {
 
   const deleteFilm = async() => {
     try {
-      const response = await fetch(`/api/v1/films/${props.match.params.id}/delete`, {
+      const response = await fetch(`/api/v1/films/${props.match.params.id}`, {
         method: 'DELETE',
         headers: new Headers({
           'Content-Type': 'application/json'
@@ -148,7 +148,6 @@ const FilmShow = props => {
       {submitButton}
       {successMessageTag}
       {newReviewForm}
-      {newReviewTile}
       {reviewsList}
       {redirect}
     </div>

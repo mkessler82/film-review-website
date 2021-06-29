@@ -44,9 +44,9 @@ public class FilmsRestController {
     return filmMap;
   }
 
-  @DeleteMapping("/{id}/delete")
+  @DeleteMapping("/{id}")
   public void deleteFilm (@PathVariable Integer id) {
-    reviewService.deleteAllByFilmId(id);
+    //reviewService.deleteAllByFilmId(id);
     filmService.deleteFilm(id);
   }
 
