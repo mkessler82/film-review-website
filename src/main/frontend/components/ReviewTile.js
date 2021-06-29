@@ -81,6 +81,35 @@ const ReviewTile = (props) => {
     thumbsDownColor = "red"
   }
 
+  const deleteReview = async() => {
+    try {
+      const response = await fetch(`/api/v1/reviews/${id}`, {
+        method: 'DELETE',
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        })
+      })
+      if (!response.ok) {
+        if(response.status === 422) {
+          const body = await response.json()
+          return setErrors(body.errors)
+        } else {
+          const errorMessage = `${response.status} (${response.statusText})`
+          const error = new Error(errorMessage)
+          throw(error)
+        }
+      }
+      props.somethingElse();
+    } catch(err) {
+      console.error(`Error in fetch: ${err.message}`)
+    }
+  }
+
+  const handleReviewDeleteClick = (event) => {
+    event.preventDefault()
+    deleteReview()
+  }
+
   return (
     <div>
       <h2>Rating: {stars}</h2>
@@ -91,6 +120,7 @@ const ReviewTile = (props) => {
         {stateCount}
         <FontAwesomeIcon className={thumbsDownColor} icon={faThumbsDown} onClick={() => voted(-1)} />
       </div>
+      <button onClick={handleReviewDeleteClick}>Delete Review</button>
     </div>
   )
 }

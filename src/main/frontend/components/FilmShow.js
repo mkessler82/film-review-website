@@ -24,6 +24,7 @@ const FilmShow = props => {
         throw (error)
       }
       const filmData = await response.json()
+      setSuccessfulReviewPosted(false)
       setFilm(filmData.film)
     } catch (err) {
       console.error(`Error in fetch: ${err.message}`)
@@ -56,7 +57,6 @@ const FilmShow = props => {
       const jsonReview = await response.json()
       setNewReview(jsonReview)
       setSuccessfulReviewPosted(true)
-      setNewReview(reviewPayload)
       setShowForm(false)
     } catch (err) {
       console.error(`Error in fetch: ${err.message}`)
@@ -91,6 +91,7 @@ const FilmShow = props => {
       <ReviewTile
         key={review.id}
         review={review}
+        somethingElse={fetchFilm}
       />
     )
   })
@@ -100,7 +101,12 @@ const FilmShow = props => {
       <ReviewTile
         key={newReview.id}
         review={newReview}
+        somethingElse={fetchFilm}
       />)
+  }
+
+  const refreshReviewList = () => {
+    setRefresh(true);
   }
 
   const deleteFilm = async() => {
