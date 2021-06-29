@@ -9,7 +9,7 @@ const FilmShow = props => {
   const [showForm, setShowForm] = useState(false)
   const [formErrors, setFormErrors] = useState({})
   const [successfulReviewPosted, setSuccessfulReviewPosted] = useState(false)
-  const [newReview, setNewReview] = useState()
+  const [newReview, setNewReview] = useState(null)
 
   const id = props.match.params.id
 
@@ -30,7 +30,7 @@ const FilmShow = props => {
 
   useEffect(() => {
     fetchFilm()
-  }, [newReview])
+  }, [])
 
   const addReview = async (reviewPayload) => {
     try {
@@ -51,8 +51,9 @@ const FilmShow = props => {
           throw (error)
         }
       }
+      const jsonReview = await response.json()
+      setNewReview(jsonReview)
       setSuccessfulReviewPosted(true)
-      setNewReview(reviewPayload)
       setShowForm(false)
     } catch (err) {
       console.error(`Error in fetch: ${err.message}`)
@@ -90,6 +91,14 @@ const FilmShow = props => {
       />
     )
   })
+
+  if (successfulReviewPosted) {
+    reviewsList.push(
+      <ReviewTile
+        key={newReview.id}
+        review={newReview}
+      />)
+  }
 
   return (
     <div>

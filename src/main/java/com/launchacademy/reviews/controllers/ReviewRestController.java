@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +25,6 @@ public class ReviewRestController {
 
   @PutMapping("/{id}")
   public ResponseEntity updateVoteCount (@PathVariable Integer id, @RequestBody Map<String, String> reviewObject){
-    System.out.println(reviewObject.get("finalCount"));
     Review review = reviewService.findById(id).get();
     review.setVoteCount(Integer.parseInt(reviewObject.get("finalCount")));
     return new ResponseEntity(reviewService.save(review), HttpStatus.OK);
