@@ -3,7 +3,7 @@ import Star from './Star.js'
 
 const AddStarRating = (props)=>  {
   const [rating, setRating] = useState(
-    typeof props.rating == "number" ? props.rating : 0
+    typeof props.starRating == "number" ? props.starRating : 0
   );
   const [selection, setSelection] = useState(0);
   const hoverOver = event => {

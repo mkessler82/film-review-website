@@ -35,6 +35,7 @@ const ReviewForm = props => {
     }
   }
 
+  
   const clearForm = (event) => {
     event.preventDefault()
     setFormPayload({
@@ -42,18 +43,23 @@ const ReviewForm = props => {
       starRating: ""
     })
     setErrors({})
+    // stars = <AddStarRating setStarRatingValue = {setStarRatingValue} starRating={0}/>
   }
 
+  
   const setStarRatingValue = (starRatingValue) => {
+    // setFormPayload({
+    // ...formPayload,
+    // starRating: starRatingValue
+    // })
     formPayload.starRating = starRatingValue
-    console.log(formPayload.starRating)
   }
-
+  
   return (
     <form onSubmit={handleSubmit}>
       <ErrorList errors={{ ...errors, ...props.errors }} />
       <div>
-        <AddStarRating setStarRatingValue = {setStarRatingValue}/>
+        <AddStarRating setStarRatingValue = {setStarRatingValue} starRating={formPayload.starRating}/>
       </div>
       <div>
         <label htmlFor="description">Description: </label>
