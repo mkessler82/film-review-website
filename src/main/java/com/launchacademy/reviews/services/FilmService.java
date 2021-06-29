@@ -30,6 +30,10 @@ public class FilmService {
     return (List<Film>) filmRepository.findAll();
   }
 
+  public void deleteFilm(Integer id) {
+    this.filmRepository.deleteById(id);
+  }
+
   public void save(Film film) {
     filmRepository.save(film);
   }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReviewForm from './ReviewForm';
 import ReviewTile from './ReviewTile';
+import { Redirect } from "react-router-dom";
 
 const FilmShow = props => {
   const [film, setFilm] = useState({
@@ -9,6 +10,7 @@ const FilmShow = props => {
   const [showForm, setShowForm] = useState(false)
   const [formErrors, setFormErrors] = useState({})
   const [successfulReviewPosted, setSuccessfulReviewPosted] = useState(false)
+  const [shouldRedirect, setShouldRedirect] = useState(false)
   const [newReview, setNewReview] = useState(null)
 
   const id = props.match.params.id
@@ -54,6 +56,7 @@ const FilmShow = props => {
       const jsonReview = await response.json()
       setNewReview(jsonReview)
       setSuccessfulReviewPosted(true)
+      setNewReview(reviewPayload)
       setShowForm(false)
     } catch (err) {
       console.error(`Error in fetch: ${err.message}`)
@@ -100,15 +103,53 @@ const FilmShow = props => {
       />)
   }
 
+  const deleteFilm = async() => {
+    try {
+      const response = await fetch(`/api/v1/films/${props.match.params.id}`, {
+        method: 'DELETE',
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        })
+      })
+      if (!response.ok) {
+        if(response.status === 422) {
+          const body = await response.json()
+          return setErrors(body.errors)
+        } else {
+          const errorMessage = `${response.status} (${response.statusText})`
+          const error = new Error(errorMessage)
+          throw(error)
+        }
+      }
+      setShouldRedirect(true)
+    } catch(err) {
+      console.error(`Error in fetch: ${err.message}`)
+    }
+  }
+
+  const handleFilmDeleteClick = (event) => {
+    event.preventDefault()
+    deleteFilm()
+  }
+
+  let redirect;
+  if (shouldRedirect) {
+    redirect = <Redirect to={`/genres/${film.genre.id}`} />
+  }
+
   return (
     <div>
       <h1>{film.title} - {film.year}</h1>
       <img src={film.imgUrl} />
-      <p>{film.description}</p>
+      <div>
+        <p>{film.description}</p>
+        <button onClick={handleFilmDeleteClick}>Delete Film</button>
+      </div>
       {submitButton}
       {successMessageTag}
       {newReviewForm}
       {reviewsList}
+      {redirect}
     </div>
   )
 }
