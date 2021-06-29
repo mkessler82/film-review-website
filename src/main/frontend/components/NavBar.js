@@ -60,7 +60,6 @@ const NavBar = props => {
         <Route exact path="/genres/:id" component={GenreShow} />
         <Route exact path="/films/new" component={FilmForm} />
         <Route exact path="/films/:id" component={FilmShow} />
-        <Route exact path="/films/:id/delete" component={DeleteFilm} />
       </Switch>
     </div>
   )
