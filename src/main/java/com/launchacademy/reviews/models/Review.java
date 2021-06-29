@@ -39,4 +39,6 @@ public class Review {
   @JsonIgnoreProperties("reviews")
   private Film film;
 
+  @Column(name = "vote_count")
+  private Integer voteCount = 0;
 }

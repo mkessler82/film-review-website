@@ -31,7 +31,6 @@ const ReviewForm = props => {
     event.preventDefault()
     if (validForSubmission()) {
       props.postNewReview(formPayload)
-      clearForm()
     }
   }
 

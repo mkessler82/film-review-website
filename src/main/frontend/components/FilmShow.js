@@ -10,8 +10,8 @@ const FilmShow = props => {
   const [showForm, setShowForm] = useState(false)
   const [formErrors, setFormErrors] = useState({})
   const [successfulReviewPosted, setSuccessfulReviewPosted] = useState(false)
-  const [newReview, setNewReview] = useState()
   const [shouldRedirect, setShouldRedirect] = useState(false)
+  const [newReview, setNewReview] = useState(null)
 
   const id = props.match.params.id
 
@@ -53,6 +53,8 @@ const FilmShow = props => {
           throw (error)
         }
       }
+      const jsonReview = await response.json()
+      setNewReview(jsonReview)
       setSuccessfulReviewPosted(true)
       setNewReview(reviewPayload)
       setShowForm(false)
@@ -93,9 +95,12 @@ const FilmShow = props => {
     )
   })
 
-  let newReviewTile
-  if (newReview) {
-    newReviewTile = <ReviewTile review={newReview} />
+  if (successfulReviewPosted) {
+    reviewsList.push(
+      <ReviewTile
+        key={newReview.id}
+        review={newReview}
+      />)
   }
 
   const deleteFilm = async() => {
