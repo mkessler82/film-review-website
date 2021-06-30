@@ -12,6 +12,7 @@ const FilmShow = props => {
   const [successfulReviewPosted, setSuccessfulReviewPosted] = useState(false)
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [newReview, setNewReview] = useState(null)
+  const [reviews, setReviews] = useState([])
 
   const id = props.match.params.id
 
@@ -26,6 +27,7 @@ const FilmShow = props => {
       const filmData = await response.json()
       setSuccessfulReviewPosted(false)
       setFilm(filmData.film)
+      setReviews(filmData.film.reviews)
     } catch (err) {
       console.error(`Error in fetch: ${err.message}`)
     }
@@ -34,6 +36,15 @@ const FilmShow = props => {
   useEffect(() => {
     fetchFilm()
   }, [])
+
+  const removedReview = id => {
+   let filteredReviews = reviews.filter(review => {
+    if (review.id != id) {
+     return review
+    }
+   })
+   setReviews(filteredReviews)
+  }
 
   const addReview = async (reviewPayload) => {
     try {
@@ -86,12 +97,12 @@ const FilmShow = props => {
     successMessageTag = <p><strong>Thank you for your review.</strong></p>
   }
 
-  let reviewsList = film.reviews.map(review => {
+  let reviewsList = reviews.map(review => {
     return (
       <ReviewTile
         key={review.id}
         review={review}
-        somethingElse={fetchFilm}
+        removedReview={removedReview}
       />
     )
   })
@@ -101,7 +112,7 @@ const FilmShow = props => {
       <ReviewTile
         key={newReview.id}
         review={newReview}
-        somethingElse={fetchFilm}
+        removedReview={removedReview}
       />)
   }
 

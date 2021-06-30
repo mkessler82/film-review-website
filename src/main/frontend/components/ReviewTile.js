@@ -99,7 +99,7 @@ const ReviewTile = (props) => {
           throw(error)
         }
       }
-      props.somethingElse();
+      props.removedReview(id);
     } catch(err) {
       console.error(`Error in fetch: ${err.message}`)
     }
