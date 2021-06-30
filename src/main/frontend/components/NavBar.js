@@ -12,20 +12,20 @@ const NavBar = props => {
   const fetchGenres = async () => {
     try {
       const response = await fetch("/api/v1/genres")
-      if(!response.ok) {
+      if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)
-        throw(error)
+        throw (error)
       }
       const genresData = await response.json()
       setGenres(genresData.genres.content)
-    } catch(err) {
+    } catch (err) {
       console.error(`Error in fetch: ${err.message}`)
     }
   }
 
   useEffect(() => {
-   fetchGenres()
+    fetchGenres()
   }, [])
 
   const genreLinks = genres.map(genre => {
@@ -38,7 +38,7 @@ const NavBar = props => {
 
   genreLinks.unshift(
     <li key={0} className="menu-text">
-        <Link to={`/genres`}>All Genres</Link>
+      <Link to={`/genres`}>All Genres</Link>
     </li>
   )
 

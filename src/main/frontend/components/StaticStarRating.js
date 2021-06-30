@@ -1,8 +1,8 @@
 import React from 'react'
 import Star from './Star.js'
 
-const StaticStarRating = (props)=>  {
- 
+const StaticStarRating = (props) => {
+
   const stars = Array.from({ length: props.starRating }, (v, i) => (
     <Star
       key={`star_${i + 1} `}

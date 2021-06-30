@@ -28,24 +28,24 @@ public class GenreSeeder {
       genreThree.setName("Comedy");
       genreThree.setImgUrl("https://static01.nyt.com/images/2017/11/26/arts/26comedycrash-illo/26comedycrash-illo-superJumbo.gif");
 
-      Genre genreFour = new Genre();
-      genreFour.setName("SciFi");
-      genreFour.setImgUrl("https://i.imgur.com/wkpNzQK.jpg");
-
-      Genre genreFive = new Genre();
-      genreFour.setName("SciFi");
-      genreFour.setImgUrl("https://i.imgur.com/wkpNzQK.jpg");
-
-      Genre genreSix = new Genre();
-      genreFour.setName("SciFi");
-      genreFour.setImgUrl("https://i.imgur.com/wkpNzQK.jpg");
+//      Genre genreFour = new Genre();
+//      genreFour.setName("SciFi");
+//      genreFour.setImgUrl("https://i.imgur.com/wkpNzQK.jpg");
+//
+//      Genre genreFive = new Genre();
+//      genreFour.setName("SciFi");
+//      genreFour.setImgUrl("https://i.imgur.com/wkpNzQK.jpg");
+//
+//      Genre genreSix = new Genre();
+//      genreFour.setName("SciFi");
+//      genreFour.setImgUrl("https://i.imgur.com/wkpNzQK.jpg");
 
       genreService.save(genreOne);
       genreService.save(genreTwo);
       genreService.save(genreThree);
-      genreService.save(genreFour);
-      genreService.save(genreFive);
-      genreService.save(genreSix);
+//      genreService.save(genreFour);
+//      genreService.save(genreFive);
+//      genreService.save(genreSix);
     }
   }
 }
