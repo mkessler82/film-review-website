@@ -78,14 +78,25 @@ const ReviewTile = (props) => {
   }
 
   return (
-    <div>
-      <StaticStarRating starRating={starRating} />
-      <p>{userReview}</p>
-      <p>{description}</p>
-      <div>
-        <FontAwesomeIcon className={thumbsUpColor} icon={faThumbsUp} onClick={() => voted(1)} />
-        {stateCount}
-        <FontAwesomeIcon className={thumbsDownColor} icon={faThumbsDown} onClick={() => voted(-1)} />
+    // <div>
+    //   <StaticStarRating starRating={starRating} />
+    //   <p>{userReview}</p>
+    //   <p>{description}</p>
+    //   <div>
+    //     <FontAwesomeIcon className={thumbsUpColor} icon={faThumbsUp} onClick={() => voted(1)} />
+    //     {stateCount}
+    //     <FontAwesomeIcon className={thumbsDownColor} icon={faThumbsDown} onClick={() => voted(-1)} />
+    //   </div>
+    // </div>
+    <div class="media-object">
+      <div class="media-object-section">
+        <h4><StaticStarRating starRating={starRating} /></h4>
+        <p>{description}</p>
+        <div className="icons">
+          <FontAwesomeIcon className={thumbsUpColor} icon={faThumbsUp} onClick={() => voted(1)} />
+          {stateCount}
+          <FontAwesomeIcon className={thumbsDownColor} icon={faThumbsDown} onClick={() => voted(-1)} />
+        </div>
       </div>
     </div>
   )

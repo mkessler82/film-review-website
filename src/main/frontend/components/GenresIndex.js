@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import GenreTile from './GenreTile'
+import Carousel from './Carousel'
 
 const GenresIndex = props => {
   const [genres, setGenres] = useState([])
@@ -34,7 +35,7 @@ const GenresIndex = props => {
   })
 
   return (
-    <div className="grid-container fluid">
+    <div className="grid-container">
       <div className="grid-x grid-margin-x">
         {genreTiles}
       </div>

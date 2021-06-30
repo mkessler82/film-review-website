@@ -45,7 +45,9 @@ const NavBar = props => {
   return (
     <div>
       <div className="top-bar">
+         <img src="/images/popcorn.png"/>
         <div className="top-bar-left">
+
           <ul className="menu">
             {genreLinks}
           </ul>

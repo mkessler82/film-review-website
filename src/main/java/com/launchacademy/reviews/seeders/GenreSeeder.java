@@ -22,15 +22,30 @@ public class GenreSeeder {
 
       Genre genreTwo = new Genre();
       genreTwo.setName("Drama");
-      genreTwo.setImgUrl("/");
+      genreTwo.setImgUrl("/images/drama-genre.jpg");
 
       Genre genreThree = new Genre();
-      genreThree.setName("Comedy");
-      genreThree.setImgUrl("https://static01.nyt.com/images/2017/11/26/arts/26comedycrash-illo/26comedycrash-illo-superJumbo.gif");
+      genreThree.setName("Adventure");
+      genreThree.setImgUrl("/images/adventure-genre.jpg");
+
+      Genre genreFour = new Genre();
+      genreFour.setName("Fantasy");
+      genreFour.setImgUrl("/images/fantasy-genre.jpg");
+
+      Genre genreFive = new Genre();
+      genreFive.setName("Romance");
+      genreFive.setImgUrl("/images/romance-genre.jpg");
+
+      Genre genreSix = new Genre();
+      genreSix.setName("Sci Fi");
+      genreSix.setImgUrl("/images/scifi-genre.jpg");
 
       genreService.save(genreOne);
       genreService.save(genreTwo);
       genreService.save(genreThree);
+      genreService.save(genreFour);
+      genreService.save(genreFive);
+      genreService.save(genreSix);
     }
   }
 }
