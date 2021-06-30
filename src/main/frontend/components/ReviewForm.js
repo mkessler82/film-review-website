@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import ErrorList from './ErrorList';
+import AddStarRating from './AddStarRating';
 
 const ReviewForm = props => {
   const [formPayload, setFormPayload] = useState({
     description: "",
-    starRating: ""
+    starRating: 0
   })
   const [errors, setErrors] = useState({})
 
@@ -19,8 +20,8 @@ const ReviewForm = props => {
     const errors = {}
     const requiredFields = ["starRating"]
     requiredFields.forEach(field => {
-      if (formPayload[field].trim() === "") {
-        errors[field] = "is empty"
+      if (formPayload.starRating === 0) {
+        errors[field] = "is not selected."
       }
     })
     setErrors(errors)
@@ -38,24 +39,23 @@ const ReviewForm = props => {
     event.preventDefault()
     setFormPayload({
       description: "",
-      starRating: ""
+      starRating: 0
     })
     setErrors({})
+  }
+
+  const setStarRatingValue = (starRatingValue) => {
+    setFormPayload({
+      ...formPayload,
+      starRating: starRatingValue
+    })
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <ErrorList errors={{ ...errors, ...props.errors }} />
       <div>
-        <label htmlFor="starRating">Rating:</label>
-        <select name="starRating" id="starRating" onChange={handleInputChange} value={formPayload.starRating}>
-          <option value=""></option>
-          <option value={1}>*</option>
-          <option value={2}>**</option>
-          <option value={3}>***</option>
-          <option value={4}>****</option>
-          <option value={5}>*****</option>
-        </select>
+        <AddStarRating setStarRatingValue={setStarRatingValue} starRating={formPayload.starRating} />
       </div>
       <div>
         <label htmlFor="description">Description: </label>

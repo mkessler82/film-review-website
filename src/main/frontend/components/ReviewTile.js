@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons'
+import StaticStarRating from './StaticStarRating';
 
 const ReviewTile = (props) => {
   const { id, starRating, description, voteCount } = props.review
@@ -8,11 +9,6 @@ const ReviewTile = (props) => {
   const [upvoted, setUpvoted] = useState(false)
   const [downvoted, setDownvoted] = useState(false)
   const [stateCount, setCount] = useState(voteCount || 0)
-
-  let stars = ""
-  for (let i = 0; i < starRating; i++) {
-    stars += "*"
-  }
 
   let userReview
   if (description) {
@@ -83,7 +79,7 @@ const ReviewTile = (props) => {
 
   return (
     <div>
-      <h2>Rating: {stars}</h2>
+      <StaticStarRating starRating={starRating} />
       <p>{userReview}</p>
       <p>{description}</p>
       <div>
