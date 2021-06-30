@@ -37,7 +37,6 @@ const ReviewForm = props => {
 
   const clearForm = (event) => {
     event.preventDefault()
-    setClear(true)
     setFormPayload({
       description: "",
       starRating: 0
