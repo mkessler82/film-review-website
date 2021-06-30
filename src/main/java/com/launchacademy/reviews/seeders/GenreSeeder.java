@@ -18,11 +18,11 @@ public class GenreSeeder {
     if (genreService.findAll().size() == 0) {
       Genre genreOne = new Genre();
       genreOne.setName("Horror");
-      genreOne.setImgUrl("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Fw1280%2FhCE09C7pOYkiXVSY0HjAUcmTBh0.jpg&f=1&nofb=1");
+      genreOne.setImgUrl("/images/horror-genre.jpg");
 
       Genre genreTwo = new Genre();
-      genreTwo.setName("True Crime");
-      genreTwo.setImgUrl("https://depauliaonline.com/wp-content/uploads/2019/05/fingerprintmagnified.png");
+      genreTwo.setName("Drama");
+      genreTwo.setImgUrl("/");
 
       Genre genreThree = new Genre();
       genreThree.setName("Comedy");
@@ -32,10 +32,20 @@ public class GenreSeeder {
       genreFour.setName("SciFi");
       genreFour.setImgUrl("https://i.imgur.com/wkpNzQK.jpg");
 
+      Genre genreFive = new Genre();
+      genreFour.setName("SciFi");
+      genreFour.setImgUrl("https://i.imgur.com/wkpNzQK.jpg");
+
+      Genre genreSix = new Genre();
+      genreFour.setName("SciFi");
+      genreFour.setImgUrl("https://i.imgur.com/wkpNzQK.jpg");
+
       genreService.save(genreOne);
       genreService.save(genreTwo);
       genreService.save(genreThree);
       genreService.save(genreFour);
+      genreService.save(genreFive);
+      genreService.save(genreSix);
     }
   }
 }

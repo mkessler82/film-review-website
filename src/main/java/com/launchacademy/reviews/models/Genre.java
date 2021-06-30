@@ -34,7 +34,6 @@ public class Genre {
   @Column(name = "name", nullable = false)
   private String name;
 
-  @URL
   @NotBlank
   @Column(name = "img_url", nullable = false)
   private String imgUrl;
