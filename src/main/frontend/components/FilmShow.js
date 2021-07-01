@@ -91,7 +91,7 @@ const FilmShow = props => {
       <ReviewTile
         key={review.id}
         review={review}
-        somethingElse={fetchFilm}
+        fetchedFilm={fetchFilm}
       />
     )
   })
@@ -101,7 +101,7 @@ const FilmShow = props => {
       <ReviewTile
         key={newReview.id}
         review={newReview}
-        somethingElse={fetchFilm}
+        fetchedFilm={fetchFilm}
       />)
   }
 
