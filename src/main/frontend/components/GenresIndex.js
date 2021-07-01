@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 import GenreTile from './GenreTile'
-import Carousel from './Carousel'
 
 const GenresIndex = props => {
   const [genres, setGenres] = useState([])

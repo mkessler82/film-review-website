@@ -113,6 +113,27 @@ public class FilmSeeder {
       f12.setDescription("Deckard (Harrison Ford) is forced by the police Boss (M. Emmet Walsh) to continue his old job as Replicant Hunter. His assignment: eliminate four escaped Replicants from the colonies who have returned to Earth. Before starting the job, Deckard goes to the Tyrell Corporation and he meets Rachel (Sean Young), a Replicant girl he falls in love with.");
       f12.setGenre(scifi.get());
 
+      Film f13 = new Film();
+      f13.setTitle("Mad Max: Fury Road");
+      f13.setImgUrl("/images/max.jpg");
+      f13.setYear(2015);
+      f13.setDescription("In a post-apocalyptic wasteland, a woman rebels against a tyrannical ruler in search for her homeland with the aid of a group of female prisoners, a psychotic worshiper, and a drifter named Max.");
+      f13.setGenre(adventure.get());
+
+      Film f14 = new Film();
+      f14.setTitle("Back To The Future");
+      f14.setImgUrl("/images/bttf.jpg");
+      f14.setYear(1985);
+      f14.setDescription("Marty McFly, a 17-year-old high school student, is accidentally sent thirty years into the past in a time-traveling DeLorean invented by his close friend, the eccentric scientist Doc Brown.");
+      f14.setGenre(adventure.get());
+
+      Film f15 = new Film();
+      f15.setTitle("Mission Impossible");
+      f15.setImgUrl("/images/impossible.jpg");
+      f15.setYear(1996);
+      f15.setDescription("An American agent, under false suspicion of disloyalty, must discover and expose the real spy without the help of his organization.");
+      f15.setGenre(adventure.get());
+
       filmService.save(f1);
       filmService.save(f2);
       filmService.save(f3);
@@ -125,6 +146,9 @@ public class FilmSeeder {
       filmService.save(f10);
       filmService.save(f11);
       filmService.save(f12);
+      filmService.save(f13);
+      filmService.save(f14);
+      filmService.save(f15);
     }
   }
 }

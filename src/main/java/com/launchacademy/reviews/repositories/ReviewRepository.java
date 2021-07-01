@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface ReviewRepository extends PagingAndSortingRepository <Review, Integer>{
 
   List<Review> findAllByFilmId(Integer id);
+
+
 }

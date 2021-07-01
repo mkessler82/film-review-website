@@ -1,5 +1,6 @@
 package com.launchacademy.reviews.services;
 
+import com.launchacademy.reviews.models.Genre;
 import com.launchacademy.reviews.models.Review;
 import com.launchacademy.reviews.repositories.ReviewRepository;
 import java.util.List;
@@ -19,6 +20,10 @@ public class ReviewService {
 
   public List<Review> findAllReviews(Pageable pageable){
     return (List<Review>) reviewRepository.findAll(pageable);
+  }
+
+  public List<Review> findAll() {
+    return (List<Review>) reviewRepository.findAll();
   }
 
   public Review save(Review review){
