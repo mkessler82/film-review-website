@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons'
+import StaticStarRating from './StaticStarRating';
+import EditReviewForm from './EditReviewForm';
 
 const ReviewTile = (props) => {
   const { id, starRating, description, voteCount } = props.review
@@ -8,11 +10,13 @@ const ReviewTile = (props) => {
   const [upvoted, setUpvoted] = useState(false)
   const [downvoted, setDownvoted] = useState(false)
   const [stateCount, setCount] = useState(voteCount || 0)
-
-  let stars = ""
-  for (let i = 0; i < starRating; i++) {
-    stars += "*"
-  }
+  const [showForm, setShowForm] = useState(false)
+  const [updatedReview, setUpdatedReview] = useState({
+    id: id,
+    starRating: "",
+    description: "",
+    voteCount: voteCount
+  })
 
   let userReview
   if (description) {
@@ -81,7 +85,49 @@ const ReviewTile = (props) => {
     thumbsDownColor = "red"
   }
 
-  const deleteReview = async() => {
+  const handleClick = event => {
+    event.preventDefault()
+    setShowForm(true)
+  }
+
+  const handleReviewDeleteClick = (event) => {
+    event.preventDefault()
+    deleteReview()
+  }
+
+  const updateReviewFrontEnd = formPayload => {
+    setShowForm(false)
+    setUpdatedReview({
+      ...formPayload,
+      ["description"]: formPayload.description,
+      ["starRating"]: formPayload.starRating
+    })
+  }
+
+  const cancelHideForm = () => {
+    setShowForm(false)
+  }
+
+  let reviewBody
+  if (showForm) {
+    reviewBody = <EditReviewForm id={id} starRating={starRating} description={description} editedReviewInfo={updateReviewFrontEnd} cancelHideForm={cancelHideForm} />
+  } else {
+    reviewBody =
+      <>
+        <StaticStarRating starRating={updatedReview.starRating || starRating} />
+        <p>{userReview}</p>
+        <p>{updatedReview.description || description}</p>
+        <div>
+          <FontAwesomeIcon className={thumbsUpColor} icon={faThumbsUp} onClick={() => voted(1)} />
+          {stateCount}
+          <FontAwesomeIcon className={thumbsDownColor} icon={faThumbsDown} onClick={() => voted(-1)} />
+        </div>
+        <button className="button" type="button" onClick={handleClick}>Edit Review</button>
+        <button className="button" type="button" onClick={handleReviewDeleteClick}>Delete Review</button>
+      </>
+  }
+
+  const deleteReview = async () => {
     try {
       const response = await fetch(`/api/v1/reviews/${id}`, {
         method: 'DELETE',
@@ -105,22 +151,9 @@ const ReviewTile = (props) => {
     }
   }
 
-  const handleReviewDeleteClick = (event) => {
-    event.preventDefault()
-    deleteReview()
-  }
-
   return (
     <div>
-      <h2>Rating: {stars}</h2>
-      <p>{userReview}</p>
-      <p>{description}</p>
-      <div>
-        <FontAwesomeIcon className={thumbsUpColor} icon={faThumbsUp} onClick={() => voted(1)} />
-        {stateCount}
-        <FontAwesomeIcon className={thumbsDownColor} icon={faThumbsDown} onClick={() => voted(-1)} />
-      </div>
-      <button onClick={handleReviewDeleteClick}>Delete Review</button>
+      {reviewBody}
     </div>
   )
 }

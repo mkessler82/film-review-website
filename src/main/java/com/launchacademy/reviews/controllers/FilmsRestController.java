@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -67,4 +68,25 @@ public class FilmsRestController {
       return new ResponseEntity<>(reviewService.save(review), HttpStatus.CREATED);
     }
   }
+
+  @PutMapping("/{id}/update-review")
+  public ResponseEntity updateReview (@PathVariable Integer id, @Valid @RequestBody Review updatedReview, BindingResult bindingResult){
+    if(bindingResult.hasErrors()) {
+      Map<String, Map<String, String>> errorsMap = new HashMap<>();
+      Map<String, String> errorsFieldMessage = new HashMap<>();
+      List<FieldError> errors = bindingResult.getFieldErrors();
+      for (FieldError error : errors ) {
+        errorsFieldMessage.put(error.getField(), error.getDefaultMessage());
+      }
+      errorsMap.put("errors", errorsFieldMessage);
+      return new ResponseEntity(errorsMap, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+    else {
+      Review oldReview = reviewService.findById(id).get();
+      oldReview.setStarRating(updatedReview.getStarRating());
+      oldReview.setDescription(updatedReview.getDescription());
+      return new ResponseEntity(reviewService.save(oldReview), HttpStatus.OK);
+    }
+  }
+
 }
