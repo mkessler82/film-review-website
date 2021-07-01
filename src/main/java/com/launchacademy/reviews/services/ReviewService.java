@@ -28,4 +28,8 @@ public class ReviewService {
   public Optional<Review> findById (Integer id){
     return reviewRepository.findById(id);
   }
+
+  public void deleteReview(Integer id) {
+    reviewRepository.deleteById(id);
+  }
 }
