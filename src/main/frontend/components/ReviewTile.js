@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons'
 import StaticStarRating from './StaticStarRating';
@@ -90,9 +90,15 @@ const ReviewTile = (props) => {
     setShowForm(true)
   }
 
+  const handleReviewDeleteClick = (event) => {
+    event.preventDefault()
+    deleteReview()
+  }
+
   const updateReviewFrontEnd = formPayload => {
     setShowForm(false)
-    setUpdatedReview({...formPayload,
+    setUpdatedReview({
+      ...formPayload,
       ["description"]: formPayload.description,
       ["starRating"]: formPayload.starRating
     })
@@ -104,7 +110,7 @@ const ReviewTile = (props) => {
 
   let reviewBody
   if (showForm) {
-    reviewBody = <EditReviewForm id={id} starRating={starRating} description={description} editedReviewInfo={updateReviewFrontEnd} cancelHideForm={cancelHideForm}/>
+    reviewBody = <EditReviewForm id={id} starRating={starRating} description={description} editedReviewInfo={updateReviewFrontEnd} cancelHideForm={cancelHideForm} />
   } else {
     reviewBody =
       <>
@@ -117,7 +123,32 @@ const ReviewTile = (props) => {
           <FontAwesomeIcon className={thumbsDownColor} icon={faThumbsDown} onClick={() => voted(-1)} />
         </div>
         <button className="button" type="button" onClick={handleClick}>Edit Review</button>
+        <button className="button" type="button" onClick={handleReviewDeleteClick}>Delete Review</button>
       </>
+  }
+
+  const deleteReview = async () => {
+    try {
+      const response = await fetch(`/api/v1/reviews/${id}`, {
+        method: 'DELETE',
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        })
+      })
+      if (!response.ok) {
+        if(response.status === 422) {
+          const body = await response.json()
+          return setErrors(body.errors)
+        } else {
+          const errorMessage = `${response.status} (${response.statusText})`
+          const error = new Error(errorMessage)
+          throw(error)
+        }
+      }
+      props.fetchedFilm();
+    } catch(err) {
+      console.error(`Error in fetch: ${err.message}`)
+    }
   }
 
   return (
