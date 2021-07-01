@@ -76,9 +76,9 @@ const FilmShow = props => {
     />
   }
 
-  let submitButton
-  if (!successfulReviewPosted) {
-    submitButton = <button type="button" className="button" onClick={handleReviewButtonClick}>Add Review!</button>
+  let addReviewButton = <button type="button" className="button" onClick={handleReviewButtonClick}>Add Review!</button>
+  if (successfulReviewPosted || showForm) {
+    addReviewButton = null
   }
 
   let successMessageTag;
@@ -118,17 +118,17 @@ const FilmShow = props => {
         })
       })
       if (!response.ok) {
-        if(response.status === 422) {
+        if (response.status === 422) {
           const body = await response.json()
           return setErrors(body.errors)
         } else {
           const errorMessage = `${response.status} (${response.statusText})`
           const error = new Error(errorMessage)
-          throw(error)
+          throw (error)
         }
       }
       setShouldRedirect(true)
-    } catch(err) {
+    } catch (err) {
       console.error(`Error in fetch: ${err.message}`)
     }
   }
@@ -149,12 +149,12 @@ const FilmShow = props => {
       <img src={film.imgUrl} />
       <div>
         <p>{film.description}</p>
-        <button onClick={handleFilmDeleteClick}>Delete Film</button>
       </div>
-      {submitButton}
+      {addReviewButton}
       {successMessageTag}
       {newReviewForm}
       {reviewsList}
+      <button className="button" onClick={handleFilmDeleteClick}>Delete Film</button>
       {redirect}
     </div>
   )
