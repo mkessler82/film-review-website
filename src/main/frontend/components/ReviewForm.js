@@ -55,11 +55,12 @@ const ReviewForm = props => {
     <form onSubmit={handleSubmit}>
       <ErrorList errors={{ ...errors, ...props.errors }} />
       <div>
-        <AddStarRating setStarRatingValue={setStarRatingValue} starRating={formPayload.starRating}/>
-      </div>
-      <div>
-        <label htmlFor="description">Description: </label>
+        <div className="review-form-title">
+          <label htmlFor="description">WRITE A REVIEW</label>
+          <AddStarRating setStarRatingValue={setStarRatingValue} starRating={formPayload.starRating}/>
+        </div>
         <input
+          className="text-box"
           name="description"
           id="description"
           type="text"
@@ -68,8 +69,8 @@ const ReviewForm = props => {
         />
       </div>
       <div>
-        <button className="button" type="button" onClick={clearForm}>Clear</button>
-        <input className="button" type="submit" value="Submit" />
+        <button className="button review-button clear-button" type="button" onClick={clearForm}>CLEAR</button>
+        <input className="button review-button submit" type="submit" value="SUBMIT" />
       </div>
     </form>
   )

@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import ReviewForm from './ReviewForm';
 import ReviewTile from './ReviewTile';
 import { Redirect } from "react-router-dom";
+import Star from "./Star";
 
 const FilmShow = props => {
   const [film, setFilm] = useState({
+    genre: "",
     reviews: []
   })
   const [showForm, setShowForm] = useState(false)
@@ -107,7 +109,7 @@ const FilmShow = props => {
   if (!average == 0){
     displayedAverage = average
   }if (film.reviews.length == 0){
-    displayedAverage = "There are no reviews for this movie. Leave a review!"
+    displayedAverage = "-"
   }
 
   if (successfulReviewPosted) {
@@ -160,19 +162,65 @@ const FilmShow = props => {
   }
 
   return (
-    <div>
-      <h1>{film.title} - {film.year}</h1>
-      <img src={film.imgUrl} />
-      <div>
-        <div>{displayedAverage}</div>
+    <div className="film-page">
+      <div className="left-column">
+        <img src={film.imgUrl} />
+        <ul>
+          <li>
+            <a className="left-column-buttons trailer" href="">WATCH TRAILER</a>
+          </li>
+          <li>
+            <a className="left-column-buttons hulu" href="">WATCH ON HULU</a>
+          </li>
+          <li>
+            <a className="left-column-buttons prime" href="">WATCH ON PRIME VIDEO</a>
+          </li>
+        </ul>
+      </div>
+
+    <div className="center-column">
+      <div className="movie-meta-data">
+        <div className="title-section">
+          <h1>{film.title}</h1>
+          <p>{film.genre.name} <span></span> {film.year}</p>
+        </div>
+        <div className="score-section">
+          <div>
+            <Star marked={true}></Star>
+            <p>{displayedAverage} / 5</p>
+          </div>
+          <p>{film.reviews.length} reviews</p>
+        </div>
+      </div>
+
+      <div className="summary">
+        <h3>Summary</h3>
         <p>{film.description}</p>
       </div>
-      {addReviewButton}
-      {successMessageTag}
-      {newReviewForm}
-      {reviewsList}
-      <button className="button" onClick={handleFilmDeleteClick}>Delete Film</button>
-      {redirect}
+      <ReviewForm       
+        errors={formErrors}
+        postNewReview={addReview}>
+      </ReviewForm>
+
+
+      <div className="reviews">
+        {reviewsList}
+      </div>
+    </div>
+
+
+
+
+      <div>
+        {addReviewButton}
+        {successMessageTag}
+        {newReviewForm}
+        <button className="button" onClick={handleFilmDeleteClick}>Delete Film</button>
+        {redirect}
+      </div>
+      <div>
+        Placeholder
+      </div>
     </div>
   )
 }
