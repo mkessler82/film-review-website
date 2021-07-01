@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons'
-import StaticStarRating from './StaticStarRating';
 
 const ReviewTile = (props) => {
   const { id, starRating, description, voteCount } = props.review
@@ -9,6 +8,11 @@ const ReviewTile = (props) => {
   const [upvoted, setUpvoted] = useState(false)
   const [downvoted, setDownvoted] = useState(false)
   const [stateCount, setCount] = useState(voteCount || 0)
+
+  let stars = ""
+  for (let i = 0; i < starRating; i++) {
+    stars += "*"
+  }
 
   let userReview
   if (description) {
@@ -77,9 +81,38 @@ const ReviewTile = (props) => {
     thumbsDownColor = "red"
   }
 
+  const deleteReview = async() => {
+    try {
+      const response = await fetch(`/api/v1/reviews/${id}`, {
+        method: 'DELETE',
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        })
+      })
+      if (!response.ok) {
+        if(response.status === 422) {
+          const body = await response.json()
+          return setErrors(body.errors)
+        } else {
+          const errorMessage = `${response.status} (${response.statusText})`
+          const error = new Error(errorMessage)
+          throw(error)
+        }
+      }
+      props.fetchedFilm();
+    } catch(err) {
+      console.error(`Error in fetch: ${err.message}`)
+    }
+  }
+
+  const handleReviewDeleteClick = (event) => {
+    event.preventDefault()
+    deleteReview()
+  }
+
   return (
     <div>
-      <StaticStarRating starRating={starRating} />
+      <h2>Rating: {stars}</h2>
       <p>{userReview}</p>
       <p>{description}</p>
       <div>
@@ -87,6 +120,7 @@ const ReviewTile = (props) => {
         {stateCount}
         <FontAwesomeIcon className={thumbsDownColor} icon={faThumbsDown} onClick={() => voted(-1)} />
       </div>
+      <button onClick={handleReviewDeleteClick}>Delete Review</button>
     </div>
   )
 }
