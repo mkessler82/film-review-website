@@ -85,7 +85,12 @@ const FilmShow = props => {
     successMessageTag = <p><strong>Thank you for your review.</strong></p>
   }
 
+  let ratingAccumulator = 0
+  let totalReviews = 0
+  let average 
   let reviewsList = film.reviews.map(review => {
+    ratingAccumulator += review.starRating
+    totalReviews++
     return (
       <ReviewTile
         key={review.id}
@@ -94,7 +99,18 @@ const FilmShow = props => {
     )
   })
 
+  average = ratingAccumulator/ totalReviews
+ 
+  let displayedAverage
+  if (!average == 0){
+    displayedAverage = average
+  }if (film.reviews.length == 0){
+    displayedAverage = "There are no reviews for this movie. Leave a review!"
+  }
+
   if (successfulReviewPosted) {
+    average = (newReview.starRating + ratingAccumulator)/ (totalReviews + 1)
+    displayedAverage = average
     reviewsList.push(
       <ReviewTile
         key={newReview.id}
@@ -141,6 +157,7 @@ const FilmShow = props => {
       <h1>{film.title} - {film.year}</h1>
       <img src={film.imgUrl} />
       <div>
+        <div>{displayedAverage}</div>
         <p>{film.description}</p>
       </div>
       {addReviewButton}
