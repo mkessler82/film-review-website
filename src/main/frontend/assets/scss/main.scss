@@ -1,6 +1,7 @@
 @import "./foundation/settings";
 @import "~foundation-sites/scss/foundation";
 @include foundation-everything;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,500&display=swap');
 // place global css here
 *,
 *::before,
@@ -13,40 +14,45 @@
 }
 
 .film-page {
+  width: 100%;
   display: flex;
+  justify-content: center;
+  font-family: "Roboto";
+  margin-top: 40px;
+}
+
+.left-column, .center-column {
+  margin-right: 65px;
 }
 
 .left-column {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .left-column img {
   border-radius: 10px;
+  margin-top: 8px;
   height: 380px;
+  min-width: 270px;
 }
 
-.left-column ul {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.left-column li {
+.left-column a {
   margin: 20px 0 0 0;
 }
 
-.left-column-buttons, .review-button {
+.left-column-buttons, .review-button, .edit-button {
   padding: 8px 20px;
-  color: white;
   border-radius: 10px;
   text-align: center;
   font-size: 12px;
   font-weight: bold;
   transition: .5s;
+  width: 215px;
+  height: 34px;
+  cursor: pointer;
+  color: white;
 }
 
 .trailer {
@@ -73,12 +79,50 @@
   background-color: #0190c0;
 }
 
-a:hover {
+a:hover, a:focus {
   color: white;
+}
+
+.center-column {
+  flex: 1 1 auto;
+  max-width: 550px;
 }
 
 .movie-meta-data {
   display: flex;
+  justify-content: space-between;
+}
+
+.title-section h1 {
+  font-size: 35px;
+  font-weight: bold;
+  margin: 0;
+  min-width: 350px;
+}
+
+.title-section p, .score-section p {
+  color: #656363;
+}
+
+.score-section p {
+  margin-left: 8px;
+}
+
+.score-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.score {
+  font-size: 20px;
+  color: black !important;
+  margin-bottom: 5px;
+}
+
+.score span {
+  font-weight: bold;
+  font-size: 25px;
 }
 
 .score-section p {
@@ -90,32 +134,71 @@ a:hover {
   border-bottom: 2px solid lightgray;
 }
 
+.summary h3 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
 .summary p {
   margin-bottom: 0;
+  color: #656363;
 }
 
 .review-form-title {
   display: flex;
   justify-content: space-between;
+  margin-top: 25px;
+}
+
+.review-form-title label {
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .text-box {
+  height: 100px;
   border-radius: 10px;
-  border: 2px solid grey;
+  margin: 20px 0;
 }
 
+form {
+  margin-bottom: 40px;
+}
 
-.review-button {
-  width: 150px;
-  box-sizing: border-box;
+.star {
+  cursor: pointer;
+}
+
+.review-container {
+  margin-bottom: 40px;
+}
+
+.review-meta {
+  display: flex;
+  justify-content: space-between;
+}
+
+.review-title {
+  font-weight: bold;
+  margin-bottom: 4px;
+
+}
+
+.review-text {
+  margin-bottom: 8px;
+}
+
+.review-button-container {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .submit, .submit:focus {
-  background-color: mediumspringgreen;
+  background-color: #40BC72;
 }
 
 .submit:hover {
-  background-color: rgb(0, 202, 125);
+  background-color: #369e60;
 }
 
 .clear-button, .clear-button:focus {
@@ -124,4 +207,158 @@ a:hover {
 
 .clear-button:hover {
   background-color: rgb(182, 182, 182);
+}
+
+.review-icons-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.trashcan, .edit {
+  height: 20px;
+  width: 20px;
+  fill: #808080;
+  transition: .5s;
+  cursor: pointer;
+}
+
+.edit {
+  margin-right: 10px;
+}
+
+.trashcan:hover {
+  fill: red;
+}
+
+.edit:hover {
+  fill: #40BC72;
+}
+
+.margin-right, .margin-left {
+  cursor: pointer;
+}
+
+.margin-right {
+  margin-right: 7px;
+}
+
+.margin-left {
+  margin-left: 7px;
+}
+
+@media screen and (max-width: 900px) {
+  .film-page {
+    flex-direction: column;
+    align-items: center;
+    min-width: 600px;
+  }
+
+  .left-column, .center-column {
+    margin-right: 0;
+  }
+
+  .left-column {
+    margin-bottom: 40px;
+  }
+
+  .center-column {
+    width: 100%;
+    max-width: 80%;
+  }
+}
+
+
+.film-tile {
+  width: 230px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: .7s;
+}
+
+.film-tile:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  transform: scale(1.05);
+}
+
+.film-tile-img {
+  height: 325px;
+  margin-bottom: 16px;
+  border-radius: 5px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.film-tile-columns {
+  display: flex;
+  justify-content: space-between;
+  color: black;
+
+}
+
+.film-tile h6, .film-tile-column-right {
+  font-weight: bold;
+}
+
+.edit-buttons-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.edit-button {
+  border: none;
+}
+
+.small {
+  width: 100px;
+}
+
+.clear {
+  background-color: red;
+}
+
+.clear:hover {
+  background-color: rgb(212, 2, 2);
+}
+
+.submit, .clear {
+  margin-right: 15px;
+}
+
+.cancel {
+  background-color: rgb(153, 152, 152);
+}
+
+.cancel:hover {
+  background-color: grey;
+}
+
+.star-icon {
+  height: 15px;
+  position: relative;
+  top: 2px;
+  margin-right: 7px;
+}
+
+.film-tile-column-right {
+  display: flex;
+  padding-right: 8px;
+}
+
+.film-tile-column-left {
+  padding-left: 8px;
+}
+
+.film-tile-column-right p {
+  line-height: 1.3;
+}
+
+.film-tile-column-left h6 {
+  margin-bottom: 0;
+}
+
+.film-tile-column-left p {
+  font-size: 14px;
+}
+
+.card-list {
+  margin: 0 30px;
 }

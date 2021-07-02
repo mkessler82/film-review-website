@@ -96,18 +96,19 @@ const ReviewForm = props => {
       </div>
       <div>
         <label htmlFor="description">New Description: </label>
-        <input
+        <textarea
+          className="text-box"
           name="description"
           id="description"
           type="text"
           value={formPayload.description}
           onChange={handleInputChange}
-        />
+        ></textarea>
       </div>
-      <div>
-        <button className="button" type="button" onClick={clearForm}>Clear</button>
-        <input className="button" type="submit" value="Submit" />
-        <button className="button" type="button" onClick={handleCancel}>Cancel</button>
+      <div className="edit-buttons-container">
+        <input className="edit-button submit small" type="submit" value="Submit" />
+        <button className="edit-button clear small" type="button" onClick={clearForm}>Clear</button>
+        <button className="edit-button cancel small" type="button" onClick={handleCancel}>Cancel</button>
       </div>
     </form>
   )

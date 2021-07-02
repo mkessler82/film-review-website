@@ -104,6 +104,10 @@ const FilmShow = props => {
   })
 
   average = ratingAccumulator/ totalReviews
+
+  if (average % 1 !== 0) {
+    average = average.toFixed(2);
+  }
  
   let displayedAverage
   if (!average == 0){
@@ -165,62 +169,51 @@ const FilmShow = props => {
     <div className="film-page">
       <div className="left-column">
         <img src={film.imgUrl} />
-        <ul>
-          <li>
-            <a className="left-column-buttons trailer" href="">WATCH TRAILER</a>
-          </li>
-          <li>
-            <a className="left-column-buttons hulu" href="">WATCH ON HULU</a>
-          </li>
-          <li>
-            <a className="left-column-buttons prime" href="">WATCH ON PRIME VIDEO</a>
-          </li>
-        </ul>
+        <a className="left-column-buttons trailer" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">WATCH TRAILER</a>
+        <a className="left-column-buttons hulu" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">WATCH ON HULU</a>
+        <a className="left-column-buttons prime" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">WATCH ON PRIME VIDEO</a>
       </div>
 
-    <div className="center-column">
-      <div className="movie-meta-data">
-        <div className="title-section">
-          <h1>{film.title}</h1>
-          <p>{film.genre.name} <span></span> {film.year}</p>
-        </div>
-        <div className="score-section">
-          <div>
-            <Star marked={true}></Star>
-            <p>{displayedAverage} / 5</p>
+      <div className="center-column">
+        <div className="movie-meta-data">
+          <div className="title-section">
+            <h1>{film.title}</h1>
+            <p>{film.genre.name} <span></span> {film.year}</p>
           </div>
-          <p>{film.reviews.length} reviews</p>
+          <div className="score-section">
+            <div>
+              <Star marked={true}></Star>
+              <p className="score"><span>{displayedAverage}</span> / 5</p>
+            </div>
+            <p>{film.reviews.length} {film.reviews.length == 1? "review" : "reviews"}</p>
+          </div>
+        </div>
+
+        <div className="summary">
+          <h3>Summary</h3>
+          <p>{film.description}</p>
+        </div>
+
+        <ReviewForm       
+          errors={formErrors}
+          postNewReview={addReview}>
+        </ReviewForm>
+
+        <div className="reviews">
+          {reviewsList}
         </div>
       </div>
 
-      <div className="summary">
-        <h3>Summary</h3>
-        <p>{film.description}</p>
-      </div>
-      <ReviewForm       
-        errors={formErrors}
-        postNewReview={addReview}>
-      </ReviewForm>
-
-
-      <div className="reviews">
-        {reviewsList}
-      </div>
-    </div>
 
 
 
-
-      <div>
+      {/* <div>
         {addReviewButton}
         {successMessageTag}
         {newReviewForm}
         <button className="button" onClick={handleFilmDeleteClick}>Delete Film</button>
         {redirect}
-      </div>
-      <div>
-        Placeholder
-      </div>
+      </div> */}
     </div>
   )
 }

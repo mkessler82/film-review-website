@@ -32,11 +32,12 @@ const ReviewForm = props => {
     event.preventDefault()
     if (validForSubmission()) {
       props.postNewReview(formPayload)
+      clearForm();
     }
   }
 
   const clearForm = (event) => {
-    event.preventDefault()
+    //event.preventDefault()
     setFormPayload({
       description: "",
       starRating: 0
@@ -56,20 +57,29 @@ const ReviewForm = props => {
       <ErrorList errors={{ ...errors, ...props.errors }} />
       <div>
         <div className="review-form-title">
-          <label htmlFor="description">WRITE A REVIEW</label>
+          <label htmlFor="description">Write a review</label>
           <AddStarRating setStarRatingValue={setStarRatingValue} starRating={formPayload.starRating}/>
         </div>
-        <input
+        <textarea 
+          className="text-box"
+          name="description"
+          id="description"
+          type="text"
+          value={formPayload.description}
+          onChange={handleInputChange}>
+        </textarea>
+
+        {/* <input
           className="text-box"
           name="description"
           id="description"
           type="text"
           value={formPayload.description}
           onChange={handleInputChange}
-        />
+        /> */}
       </div>
-      <div>
-        <button className="button review-button clear-button" type="button" onClick={clearForm}>CLEAR</button>
+      <div className="review-button-container">
+        {/* <button className="button review-button clear-button" type="button" onClick={clearForm}>CLEAR</button> */}
         <input className="button review-button submit" type="submit" value="SUBMIT" />
       </div>
     </form>

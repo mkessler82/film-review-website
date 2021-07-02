@@ -39,7 +39,9 @@ const GenreShow = props => {
   return (
     <div>
       <h1>{genre.name}</h1>
-      {filmTiles}
+      <div className="card-list">
+        {filmTiles}
+      </div>
     </div>
   )
 }
