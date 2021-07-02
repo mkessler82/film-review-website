@@ -15,22 +15,31 @@ public class GenreSeeder {
   }
 
   public void seed() {
-    if (genreService.findAll().size() == 0) {
+    if (this.genreService.findAll().size() == 0) {
       Genre genreOne = new Genre();
       genreOne.setName("Horror");
       genreOne.setImgUrl("/images/horror-genre.jpg");
-
       Genre genreTwo = new Genre();
       genreTwo.setName("Drama");
-      genreTwo.setImgUrl("/");
-
+      genreTwo.setImgUrl("/images/drama-genre.jpg");
       Genre genreThree = new Genre();
-      genreThree.setName("Comedy");
-      genreThree.setImgUrl("https://static01.nyt.com/images/2017/11/26/arts/26comedycrash-illo/26comedycrash-illo-superJumbo.gif");
-
-      genreService.save(genreOne);
-      genreService.save(genreTwo);
-      genreService.save(genreThree);
+      genreThree.setName("Adventure");
+      genreThree.setImgUrl("/images/adventure-genre.jpg");
+      Genre genreFour = new Genre();
+      genreFour.setName("Fantasy");
+      genreFour.setImgUrl("/images/fantasy-genre.jpg");
+      Genre genreFive = new Genre();
+      genreFive.setName("Romance");
+      genreFive.setImgUrl("/images/romance-genre.jpg");
+      Genre genreSix = new Genre();
+      genreSix.setName("Sci Fi");
+      genreSix.setImgUrl("/images/scifi-genre.jpg");
+      this.genreService.save(genreOne);
+      this.genreService.save(genreTwo);
+      this.genreService.save(genreThree);
+      this.genreService.save(genreFour);
+      this.genreService.save(genreFive);
+      this.genreService.save(genreSix);
     }
   }
 }
