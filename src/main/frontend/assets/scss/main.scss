@@ -29,6 +29,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 .left-column img {
@@ -361,4 +362,28 @@ form {
 
 .card-list {
   margin: 0 30px;
+}
+
+.delete-trashcan-container {
+  padding: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  position: absolute;
+  left: -30px;
+  top: 7px;
+  visibility: hidden;
+  opacity: 0;
+  transition: .4s;
+}
+
+.left-column:hover {
+  .delete-trashcan-container {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.delete-film-trashcan {
+  position: relative;
+  top: 2px;
 }
