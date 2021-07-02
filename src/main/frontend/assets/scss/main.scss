@@ -440,9 +440,67 @@ form {
 }
 
 .cell:hover {
-
   img {
     transform: scale(1.05);
   }
 }
+
+.genre-page {
+  h1 {
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
+.header-holder {
+  background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpayload.cargocollective.com%2F1%2F11%2F367710%2F13568488%2FMOVIECLASSICSerikweb_2500_800.jpg&f=1&nofb=1");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.header-holder-smaller {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(22, 7, 73, .6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+  h1 {
+    font-size: 70px !important;
+  }
+
+  h3 {
+    font-size: 45px !important;
+    font-weight: bold;
+    color: #d2eb33;
+  }
+}
+
+.top-bar {
+  background-color: #232b4f;
+
+  ul {
+    background-color: transparent !important;
+
+    a {
+      transition: .4s;
+      color: #abb7c4;
+    }
+
+    a:hover {
+      color: #d2eb33;
+    }
+  }
+}
+
+
+
+
 

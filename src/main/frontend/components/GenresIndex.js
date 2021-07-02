@@ -34,7 +34,13 @@ const GenresIndex = props => {
   })
 
   return (
-    <div className="">
+    <div className="genre-page">
+      <div className="header-holder">
+          <div className="header-holder-smaller">
+            <h1>Code Critics</h1>
+            <h3>We Code, You Review</h3>
+        </div>
+      </div>
       <div className="genre-container">
         {genreTiles}
       </div>

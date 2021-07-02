@@ -45,7 +45,7 @@ const NavBar = props => {
   return (
     <div>
       <div className="top-bar">
-        <div className="top-bar-left">
+        <div className="top-bar-center">
           <ul className="menu">
             {genreLinks}
           </ul>
