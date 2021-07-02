@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import ReviewForm from './ReviewForm';
 import ReviewTile from './ReviewTile';
 import { Redirect } from "react-router-dom";
+import Star from "./Star";
 
 const FilmShow = props => {
   const [film, setFilm] = useState({
+    genre: "",
     reviews: []
   })
   const [showForm, setShowForm] = useState(false)
@@ -102,12 +104,16 @@ const FilmShow = props => {
   })
 
   average = ratingAccumulator/ totalReviews
+
+  if (average % 1 !== 0) {
+    average = average.toFixed(2);
+  }
  
   let displayedAverage
   if (!average == 0){
     displayedAverage = average
   }if (film.reviews.length == 0){
-    displayedAverage = "There are no reviews for this movie. Leave a review!"
+    displayedAverage = "-"
   }
 
   if (successfulReviewPosted) {
@@ -160,19 +166,54 @@ const FilmShow = props => {
   }
 
   return (
-    <div>
-      <h1>{film.title} - {film.year}</h1>
-      <img src={film.imgUrl} />
-      <div>
-        <div>{displayedAverage}</div>
-        <p>{film.description}</p>
+    <div className="film-page">
+      <div className="left-column">
+        <img src={film.imgUrl} />
+        <a className="left-column-buttons trailer" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">WATCH TRAILER</a>
+        <a className="left-column-buttons hulu" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">WATCH ON HULU</a>
+        <a className="left-column-buttons prime" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">WATCH ON PRIME VIDEO</a>
       </div>
-      {addReviewButton}
-      {successMessageTag}
-      {newReviewForm}
-      {reviewsList}
-      <button className="button" onClick={handleFilmDeleteClick}>Delete Film</button>
-      {redirect}
+
+      <div className="center-column">
+        <div className="movie-meta-data">
+          <div className="title-section">
+            <h1>{film.title}</h1>
+            <p>{film.genre.name} <span></span> {film.year}</p>
+          </div>
+          <div className="score-section">
+            <div>
+              <Star marked={true}></Star>
+              <p className="score"><span>{displayedAverage}</span> / 5</p>
+            </div>
+            <p>{film.reviews.length} {film.reviews.length == 1? "review" : "reviews"}</p>
+          </div>
+        </div>
+
+        <div className="summary">
+          <h3>Summary</h3>
+          <p>{film.description}</p>
+        </div>
+
+        <ReviewForm       
+          errors={formErrors}
+          postNewReview={addReview}>
+        </ReviewForm>
+
+        <div className="reviews">
+          {reviewsList}
+        </div>
+      </div>
+
+
+
+
+      {/* <div>
+        {addReviewButton}
+        {successMessageTag}
+        {newReviewForm}
+        <button className="button" onClick={handleFilmDeleteClick}>Delete Film</button>
+        {redirect}
+      </div> */}
     </div>
   )
 }
