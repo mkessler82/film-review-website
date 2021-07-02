@@ -43,7 +43,7 @@ const GenreShow = props => {
     })
     displayPage =
       <div>
-        <h1>{genre.name}</h1>
+        <h1 className="genre-title">{genre.name}</h1>
         <div className="card-list">
           {filmTiles}
         </div>

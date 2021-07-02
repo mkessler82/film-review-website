@@ -273,6 +273,7 @@ form {
   width: 230px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: .7s;
+  margin: 0 10px 35px 10px;
 }
 
 .film-tile:hover {
@@ -281,6 +282,7 @@ form {
 }
 
 .film-tile-img {
+  width: 100%;
   height: 325px;
   margin-bottom: 16px;
   border-radius: 5px;
@@ -341,11 +343,11 @@ form {
 
 .film-tile-column-right {
   display: flex;
-  padding-right: 8px;
+  padding-right: 10px;
 }
 
 .film-tile-column-left {
-  padding-left: 8px;
+  padding-left: 10px;
 }
 
 .film-tile-column-right p {
@@ -358,10 +360,14 @@ form {
 
 .film-tile-column-left p {
   font-size: 14px;
+  color: grey;
 }
 
 .card-list {
   margin: 0 30px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .delete-trashcan-container {
@@ -387,3 +393,56 @@ form {
   position: relative;
   top: 2px;
 }
+
+.genre-title {
+  font-weight: bold;
+  text-align: center;
+  margin: 40px;
+  font-size: 45px;
+}
+
+.thumbnail {
+  box-shadow: none;
+}
+
+.large-4 {
+  width: calc(23.33333% - 1.875rem) !important;
+}
+
+
+.cell h1 {
+  text-align: center;
+}
+
+.grid-x {
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.genre-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-top: 45px;
+}
+
+.cell {
+  max-width: 380px;
+  margin: 0 20px 30px 20px;
+
+  a {
+    color: black !important;
+  }
+
+  img {
+    transition: .4s;
+  }
+}
+
+.cell:hover {
+
+  img {
+    transform: scale(1.05);
+  }
+}
+
