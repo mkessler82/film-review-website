@@ -25,7 +25,7 @@ public class Film {
   @Column(name = "title", nullable = false)
   private String title;
 
-  @URL
+  @NotBlank
   @Column(name = "img_url", nullable = false)
   private String imgUrl;
 

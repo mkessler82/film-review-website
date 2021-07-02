@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from "react-router-dom"
 import FilmTile from "./FilmTile";
+import FourOFour from './FourOFour';
 
 const GenreShow = props => {
   let location = useLocation();
@@ -27,21 +28,32 @@ const GenreShow = props => {
     fetchGenre()
   }, [location.pathname])
 
-  const filmTiles = genre.films.map(film => {
-    return (
-      <FilmTile
-        key={film.id}
-        film={film}
-      />
-    )
-  })
+  let displayPage
+
+  if (!genre) {
+    displayPage = <FourOFour />
+  } else {
+    const filmTiles = genre.films.map(film => {
+      return (
+        <FilmTile
+          key={film.id}
+          film={film}
+        />
+      )
+    })
+    displayPage =
+      <div>
+        <h1>{genre.name}</h1>
+        <div className="card-list">
+          {filmTiles}
+        </div>
+      </div>
+
+  }
 
   return (
     <div>
-      <h1>{genre.name}</h1>
-      <div className="card-list">
-        {filmTiles}
-      </div>
+      {displayPage}
     </div>
   )
 }
