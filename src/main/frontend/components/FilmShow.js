@@ -194,7 +194,6 @@ const FilmShow = props => {
         </div>
         {redirect}
       </div>
-
   }
 
   return (
